@@ -13,7 +13,7 @@ import { auth, database } from "../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 const BACKGROUND_IMAGE_URL = Platform.OS==='web'?"https://picsum.photos/1000":"https://picsum.photos/600"
-
+const styling = Platform.OS==='web'?'web':'App'
 export default function Signup() {
   return (
     <View style={styles.container}>
