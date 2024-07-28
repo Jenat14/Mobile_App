@@ -8,13 +8,18 @@ import {
   ImageBackground,
   Platform,
 } from "react-native";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, database } from "../config/firebase";
-import { doc, setDoc } from "firebase/firestore";
+//import profile from "../assets/profile.webp";
 
 const BACKGROUND_IMAGE_URL = Platform.OS==='web'?"https://picsum.photos/1000":"https://picsum.photos/600"
-const styling = Platform.OS==='web'?'web':'App'
+//const styling = Platform.OS==='web'?'web':'App'
 export default function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [imageURL, setImageURL] = useState("");
+  
   return (
     <View style={styles.container}>
       <ImageBackground source={{uri:BACKGROUND_IMAGE_URL}} style={styles.backImage}>
@@ -24,6 +29,9 @@ export default function Signup() {
               style={styles.input}
               placeholder="Enter name"
               autoCapitalize="none"
+              textContentType="name"
+              value={name}
+              onChangeText={(text) => setName(text)}
             />
             <TextInput
               style={styles.input}
@@ -31,6 +39,9 @@ export default function Signup() {
               autoCapitalize="none"
               keyboardType="email-address"
               textContentType="emailAddress"
+              autoFocus={true}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
             />
             <TextInput
               style={styles.input}
@@ -39,17 +50,17 @@ export default function Signup() {
               autoCorrect={false}
               secureTextEntry={true}
               textContentType="password"
-
+              value={password}
+              onChangeText={(text) => setPassword(text)}
             />
             <TextInput
               style={styles.input}
               placeholder="Enter image URL"
-
+              value={imageURL}
+              onChangeText={(text) => setImageURL(text)}
             />
-            <TouchableOpacity style={styles.button}>
-              <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
-                Sign Up
-              </Text>
+            <TouchableOpacity style={styles.button} /*onPress={onHandleSignup}*/>
+              <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>Sign Up</Text>
             </TouchableOpacity>
 
             <View style={styles.navigation}>
