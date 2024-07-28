@@ -1,8 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
-import Navigator from "./src/routes";
+import Signup from "./src/screens/Signup";
 function App() {
   return (
-    <Navigator/>    
+    <Signup/>    
   )
 }
 
