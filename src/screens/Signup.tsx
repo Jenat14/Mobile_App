@@ -4,7 +4,7 @@ export default function Signup(){
     return(
         <>
         <View style={styles.container}>
-      <Text>This is the signup Page. duh!</Text>
+      <Text>This is the signup Page.</Text>
       <StatusBar style="auto" />
     </View>
         </>
