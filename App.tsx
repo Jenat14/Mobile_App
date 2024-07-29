@@ -1,9 +1,10 @@
-import Signup from "./src/screens/Signup";
-import Login from "./src/screens/Login";
-function App() {
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './src/routes';
+import Signup from './src/screens/Signup';
+export default function App() {
   return (
-    <Signup/>    
-  )
+    <NavigationContainer>
+      <Signup />
+    </NavigationContainer>
+  );
 }
-
-export default App
