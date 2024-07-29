@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, database } from "../config/firebase";
+import Login from "./Login";
+import { useNavigation } from '@react-navigation/native';
 //import profile from "../assets/profile.webp";
 
 const BACKGROUND_IMAGE_URL = Platform.OS==='web'?"https://picsum.photos/1000":"https://picsum.photos/600"
@@ -19,6 +21,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [imageURL, setImageURL] = useState("");
+  const navigation = useNavigation();
   
   return (
     <View style={styles.container}>
@@ -65,7 +68,7 @@ export default function Signup() {
 
             <View style={styles.navigation}>
               <Text style={styles.text}>Already have an account? </Text>
-              <TouchableOpacity>
+              <TouchableOpacity /*onPress={()=>navigation.navigate('Login')}*/>
                 <Text style={styles.linkText}>Log In</Text>
               </TouchableOpacity>
             </View>
