@@ -1,11 +1,13 @@
-import { Route, Routes } from "react-router";
-import Signup from "../screens/Signup";
-export default function Navigator(){
-    return(
-        <>
-            <Routes>
-                <Route path={"/"} element={<Signup />}></Route>
-            </Routes>
-        </>
-    )
+import { createStackNavigator } from '@react-navigation/stack';
+import Signup from '../screens/Signup';
+import Login from '../screens/Login';
+const Stack = createStackNavigator();
+
+export default function AppNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="Login" component={Login} />
+    </Stack.Navigator>
+  );
 }
