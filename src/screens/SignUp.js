@@ -34,7 +34,8 @@ export default function Signup({navigation}) {
         displayName: name,
         photoURL: imageURL,
       });
-
+      setError(""); 
+      navigation.navigate('Home');
       const userRef = doc(database, "users", user.uid);
 
       await setDoc(userRef, {
@@ -43,7 +44,6 @@ export default function Signup({navigation}) {
         uid: user.uid,
         photoURL: imageURL,
       });
-      setError(""); 
     } catch (error) {
       setError(error.message);
     }
