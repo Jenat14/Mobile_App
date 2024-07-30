@@ -19,6 +19,8 @@ export default function Signup({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [imageURL, setImageURL] = useState("");
+  const [error, setError] = useState("");
+
   const onHandleSignup = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -41,8 +43,9 @@ export default function Signup({navigation}) {
         uid: user.uid,
         photoURL: imageURL,
       });
+      setError(""); 
     } catch (error) {
-      console.log(error.message);
+      setError(error.message);
     }
   };
   return (
@@ -84,7 +87,7 @@ export default function Signup({navigation}) {
               value={imageURL}
               onChangeText={(text) => setImageURL(text)}
             />
-
+          {error ? <Text style={styles.errorText}>{error}</Text> : null}
             <TouchableOpacity style={styles.button} onPress={onHandleSignup}>
               <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
                 Sign Up
@@ -149,5 +152,9 @@ const styles = StyleSheet.create({
     color: "#ff6d09",
     fontWeight: "600",
     fontSize: 14,
+  },
+  errorText: {
+    color: "red",
+    marginBottom: 10,
   },
 });

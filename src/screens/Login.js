@@ -16,20 +16,20 @@ const BACKGROUND_IMAGE_URL = Platform.OS==='web'?"https://picsum.photos/1000":"h
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("")
   const handleAuthError = (error) => {
     console.log("Login error: ", error);
     const errorCode = error.code;
     
     switch (errorCode) {
       case "auth/invalid-email":
-        alert("The email address you entered is invalid.");
+        setError("The email address you entered is invalid.");
         break;
       case "auth/invalid-credential":
-        alert("Invalid credentials");
+        setError("Invalid credentials");
         break;
       default:
-        alert("An unexpected error occurred.");
+        setError("An unexpected error occurred.");
         break;
     }
   };
@@ -37,7 +37,10 @@ export default function Login({ navigation }) {
   const onHandleLogin = () => {
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => console.log("Login success"))
+        .then(() => {
+          console.log("Login success");
+          navigation.navigate('Home');
+        })
         .catch(handleAuthError);
     }
   };
@@ -66,7 +69,7 @@ export default function Login({ navigation }) {
               value={password}
               onChangeText={(text) => setPassword(text)}
             />
-
+          {error ? <Text style={styles.errorText}>{error}</Text> : null}          
             <TouchableOpacity style={styles.button} onPress={onHandleLogin}>
               <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
                 Log In
@@ -130,5 +133,9 @@ const styles = StyleSheet.create({
     color: "#ff6d09",
     fontWeight: "600",
     fontSize: 14,
+  },
+  errorText: {
+    color: "red",
+    marginBottom: 10,
   },
 });
