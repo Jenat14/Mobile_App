@@ -38,7 +38,6 @@ export default function Login({ navigation }) {
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           console.log("Login success");
-          navigation.navigate('Home');
         })
         .catch(handleAuthError);
     }
@@ -113,8 +112,8 @@ const styles = StyleSheet.create({
   form: {
     width: Platform.OS === 'web'? '40%': "80%",
     backgroundColor:"rgba(100, 92, 96, 0.4)",
-    padding:"15px",
-    borderRadius:'8px'
+    padding:15,
+    borderRadius:8
   },
   inputBox: {
     backgroundColor: "#ffffff",
