@@ -36,22 +36,15 @@ export default function Profile() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Profile</Text>
-      {user.photoURL ? (
-        <Image source={{ uri: user.photoURL }} style={styles.profileImage} />
-      ) : (
-        <View style={styles.initialsContainer}>
-          <Text style={styles.initialsText}>
-            {getInitials(user.displayName)}
-          </Text>
-        </View>
-      )}
-      <View style={styles.userInfo}>
-        <Text style={styles.label}>Name:</Text>
-        <Text style={styles.value}>{user.displayName}</Text>
-
-        <Text style={styles.label}>Email:</Text>
-        <Text style={styles.value}>{user.email}</Text>
+      <Text style={styles.title}> Your Profile</Text>
+      <View style={styles.content}>
+        <Image source={{ uri: user.photoURL }} style={styles.profile} />
+          <View style={styles.userInfo}>
+            <Text style={styles.label}>Name</Text>
+            <Text style={styles.value}>{user.displayName}</Text>
+            <Text style={styles.label}>Email</Text>
+            <Text style={styles.value}>{user.email}</Text>
+          </View>
       </View>
       <TouchableOpacity style={styles.button} onPress={handleLogout}>
         <Text style={styles.buttonText}>Logout</Text>
@@ -67,15 +60,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
   },
+  content:{
+    display:'flex',
+    flexDirection:'row',
+    gap:'10%'
+  },
   title: {
     fontSize: 32,
     fontWeight: "bold",
     marginBottom: 40,
   },
-  profileImage: {
+  profile: {
     width: 100,
     height: 100,
-    borderRadius: 50,
     marginBottom: 20,
   },
   initialsContainer: {
@@ -105,12 +102,12 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#E53935",
-    padding: 15,
+    padding: 8,
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
-    width: "60%",
+    width: "40%",
   },
   buttonText: {
     color: "#fff",

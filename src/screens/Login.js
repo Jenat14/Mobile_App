@@ -18,7 +18,6 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("")
   const handleAuthError = (error) => {
-    console.log("Login error: ", error);
     const errorCode = error.code;
     
     switch (errorCode) {
@@ -50,6 +49,7 @@ export default function Login({ navigation }) {
       <ImageBackground source={{uri:BACKGROUND_IMAGE_URL}} style={styles.backGround}>
         <View style={styles.Contents}>
           <View style={styles.form}>
+          <Text style={styles.title}>Login To Your Profile</Text>
             <TextInput
               style={styles.inputBox}
               placeholder="Enter email"
@@ -71,7 +71,7 @@ export default function Login({ navigation }) {
             />
           {error ? <Text style={styles.errorText}>{error}</Text> : null}          
             <TouchableOpacity style={styles.button} onPress={onHandleLogin}>
-              <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
+              <Text style={styles.action}>
                 Log In
               </Text>
             </TouchableOpacity>
@@ -93,6 +93,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 30,
+    textAlign:"center",
+    color:"#ff6d09"
+  },
   backGround: {
     flex: 1,
   },
@@ -105,6 +112,9 @@ const styles = StyleSheet.create({
     },
   form: {
     width: Platform.OS === 'web'? '40%': "80%",
+    backgroundColor:"rgba(100, 92, 96, 0.4)",
+    padding:"15px",
+    borderRadius:'8px'
   },
   inputBox: {
     backgroundColor: "#ffffff",
@@ -119,6 +129,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  action:{
+    fontWeight: "bold", 
+    color: "#ffffff", 
+    fontSize: 18
+    }, 
   navigation: {
     marginTop: 20,
     flexDirection: "row",

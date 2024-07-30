@@ -45,7 +45,20 @@ export default function Signup({navigation}) {
         photoURL: imageURL,
       });
     } catch (error) {
-      setError(error.message);
+      console.log(error.code)
+      switch (error.code) {
+        case "auth/invalid-email":
+          setError("The email address you entered is invalid.");
+          break;
+        case "auth/invalid-credential":
+          setError("Invalid credentials");
+          break;
+        case "auth/network-request-failed":
+          setError("Request failed");
+        default:
+          setError("Account creation failed.");
+          break;
+      };
     }
   };
   return (
@@ -53,6 +66,7 @@ export default function Signup({navigation}) {
       <ImageBackground source={{uri:BACKGROUND_IMAGE_URL}} style={styles.backGround}>
         <View style={styles.Contents}>
           <View style={styles.form}>
+          <Text style={styles.title}>Create An account</Text>
             <TextInput
               style={styles.inputBox}
               placeholder="Enter name"
@@ -89,7 +103,7 @@ export default function Signup({navigation}) {
             />
           {error ? <Text style={styles.errorText}>{error}</Text> : null}
             <TouchableOpacity style={styles.button} onPress={onHandleSignup}>
-              <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
+              <Text style={styles.action}>
                 Sign Up
               </Text>
             </TouchableOpacity>
@@ -111,6 +125,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 30,
+    textAlign:"center",
+    color:"#ff6d09"
+  },
   backGround: {
     flex: 1,
   },
@@ -121,9 +142,12 @@ const styles = StyleSheet.create({
       alignItems: "center",
       width: "100%",
     },
-  form: {
-    width: Platform.OS === 'web'? '40%': "80%",
-  },
+    form: {
+      width: Platform.OS === 'web'? '40%': "80%",
+      backgroundColor:"rgba(100, 92, 96, 0.4)",
+      padding:"15px",
+      borderRadius:'8px'
+    },
   inputBox: {
     backgroundColor: "#ffffff",
     padding: 15,
@@ -137,7 +161,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
+  action:{
+    fontWeight: "bold", 
+    color: "#ffffff", 
+    fontSize: 18
+    }, 
   navigation: {
     marginTop: 20,
     flexDirection: "row",
