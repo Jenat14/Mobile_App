@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   content:{
     display:'flex',
     flexDirection:'row',
-    gap:'10%'
+    gap:10
   },
   title: {
     fontSize: 32,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   userInfo: {
-    width: "80%",
+    width: 250,
     marginBottom: 20,
   },
   label: {
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
-    width: "40%",
+    width: 100,
   },
   buttonText: {
     color: "#fff",
