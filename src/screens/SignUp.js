@@ -9,7 +9,7 @@ import {
   Platform,
 } from "react-native";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, database } from "../service/firebase";
+import { auth, db } from "../service/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 const BACKGROUND_IMAGE_URL = Platform.OS==='web'?"https://picsum.photos/1000":"https://picsum.photos/600"
@@ -36,7 +36,7 @@ export default function Signup({navigation}) {
       });
       setError(""); 
       navigation.navigate('Home');
-      const userRef = doc(database, "users", user.uid);
+      const userRef = doc(db, "users", user.uid);
 
       await setDoc(userRef, {
         displayName: name,
