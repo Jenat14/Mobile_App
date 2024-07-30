@@ -47,11 +47,11 @@ export default function Signup({navigation}) {
   };
   return (
     <View style={styles.container}>
-      <ImageBackground source={{uri:BACKGROUND_IMAGE_URL}} style={styles.backImage}>
-        <View style={styles.overlay}>
+      <ImageBackground source={{uri:BACKGROUND_IMAGE_URL}} style={styles.backGround}>
+        <View style={styles.Contents}>
           <View style={styles.form}>
             <TextInput
-              style={styles.input}
+              style={styles.inputBox}
               placeholder="Enter name"
               autoCapitalize="none"
               autoCorrect={false}
@@ -60,7 +60,7 @@ export default function Signup({navigation}) {
               onChangeText={(text) => setName(text)}
             />
             <TextInput
-              style={styles.input}
+              style={styles.inputBox}
               placeholder="Enter email"
               autoCapitalize="none"
               keyboardType="email-address"
@@ -69,7 +69,7 @@ export default function Signup({navigation}) {
               onChangeText={(text) => setEmail(text)}
             />
             <TextInput
-              style={styles.input}
+              style={styles.inputBox}
               placeholder="Enter password"
               autoCapitalize="none"
               autoCorrect={false}
@@ -79,7 +79,7 @@ export default function Signup({navigation}) {
               onChangeText={(text) => setPassword(text)}
             />
             <TextInput
-              style={styles.input}
+              style={styles.inputBox}
               placeholder="Enter image URL"
               value={imageURL}
               onChangeText={(text) => setImageURL(text)}
@@ -94,7 +94,7 @@ export default function Signup({navigation}) {
             <View style={styles.navigation}>
               <Text style={styles.text}>Already have an account? </Text>
               <TouchableOpacity  onPress={() => navigation.navigate("Login")}>
-                <Text style={styles.linkText}>Log In</Text>
+                <Text style={styles.link}>Log In</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -108,46 +108,45 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  backImage: {
+  backGround: {
     flex: 1,
   },
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-  },
+  Contents: {
+      flex: 1,
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+    },
   form: {
-    width: "80%",
+    width: Platform.OS === 'web'? '40%': "80%",
   },
-  input: {
-    backgroundColor: "#fff",
+  inputBox: {
+    backgroundColor: "#ffffff",
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,
   },
   button: {
-    backgroundColor: "#f57c00",
+    backgroundColor: "#ff6d09",
     padding: 15,
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
   },
+
   navigation: {
     marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "center",
   },
   text: {
     color: "white",
     fontWeight: "600",
     fontSize: 14,
   },
-  linkText: {
-    color: "#f57c00",
+  link: {
+    color: "#ff6d09",
     fontWeight: "600",
     fontSize: 14,
   },

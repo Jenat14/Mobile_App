@@ -44,11 +44,11 @@ export default function Login({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={{uri:BACKGROUND_IMAGE_URL}} style={styles.backImage}>
-        <View style={styles.overlay}>
+      <ImageBackground source={{uri:BACKGROUND_IMAGE_URL}} style={styles.backGround}>
+        <View style={styles.Contents}>
           <View style={styles.form}>
             <TextInput
-              style={styles.input}
+              style={styles.inputBox}
               placeholder="Enter email"
               autoCapitalize="none"
               keyboardType="email-address"
@@ -57,7 +57,7 @@ export default function Login({ navigation }) {
               onChangeText={(text) => setEmail(text)}
             />
             <TextInput
-              style={styles.input}
+              style={styles.inputBox}
               placeholder="Enter password"
               autoCapitalize="none"
               autoCorrect={false}
@@ -76,7 +76,7 @@ export default function Login({ navigation }) {
             <View style={styles.navigation}>
               <Text style={styles.text}>Don't have an account? </Text>
               <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-                <Text style={styles.linkText}>Sign Up</Text>
+                <Text style={styles.link}>Sign Up</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -90,46 +90,44 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  backImage: {
+  backGround: {
     flex: 1,
   },
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-  },
+  Contents: {
+      flex: 1,
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+    },
   form: {
-    width: "80%",
+    width: Platform.OS === 'web'? '40%': "80%",
   },
-  input: {
-    backgroundColor: "#fff",
+  inputBox: {
+    backgroundColor: "#ffffff",
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,
   },
   button: {
-    backgroundColor: "#f57c00",
+    backgroundColor: "#ff6d09",
     padding: 15,
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
   },
   navigation: {
     marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "center",
   },
   text: {
     color: "white",
     fontWeight: "600",
     fontSize: 14,
   },
-  linkText: {
-    color: "#f57c00",
+  link: {
+    color: "#ff6d09",
     fontWeight: "600",
     fontSize: 14,
   },
