@@ -80,35 +80,3 @@ const theme = createTheme({
 
 
 export default theme;
-
-/*const styles = StyleSheet.create({
-container:{
-flex:1,
-alignItems:'center'
-},
-body:{
-flex:1,
-alignItems:'center',
-justifyContent:'center'
-},
-title:{
-fontWeight:'bold',
-fontSize:30,
-alignSelf:"center",
-color:"#f57c00"
-},
-button: {
-backgroundColor: "#f57c00",
-padding: 10,
-borderRadius: 8,
-justifyContent: "center",
-alignItems: "center",
-width:'40%',
-marginTop: 10,
-},
-buttonText: {
-color: "#fff",
-fontWeight: "bold",
-fontSize: 18,
-},
-});*/
