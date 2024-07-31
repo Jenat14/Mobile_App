@@ -1,29 +1,14 @@
 import { signOut } from "firebase/auth";
 import React, { useContext } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { TouchableOpacity, Image } from "react-native";
+import { ThemeProvider, createBox, createText } from "@shopify/restyle";
 import { auth } from "../service/firebase";
 import { AuthenticatedUserContext } from "../contexts";
-
+import theme from "./theme";
 export default function Profile() {
   const { user } = useContext(AuthenticatedUserContext);
-
-  const getInitials = (name) => {
-    return name
-      ? name
-          .split(" ")
-          .map((word) => word[0])
-          .join("")
-          .substring(0, 2)
-          .toUpperCase()
-      : "";
-  };
-
+  const Box = createBox();
+  const Text = createText();
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -35,83 +20,33 @@ export default function Profile() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}> Your Profile</Text>
-      <View style={styles.content}>
-        <Image source={{ uri: user.photoURL }} style={styles.profile} />
-          <View style={styles.userInfo}>
-            <Text style={styles.label}>Name</Text>
-            <Text style={styles.value}>{user.displayName}</Text>
-            <Text style={styles.label}>Email</Text>
-            <Text style={styles.value}>{user.email}</Text>
-          </View>
-      </View>
-      <TouchableOpacity style={styles.button} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Logout</Text>
-      </TouchableOpacity>
-    </View>
+    <ThemeProvider theme={theme}>
+      <Box flex={1} justifyContent="center" alignItems="center">
+        <Text variant="title" marginBottom="xl">
+          Your Profile
+        </Text>
+        <Box style={theme.contentVariants.default}>
+          <Image 
+            source={{ uri: user.photoURL }} 
+            style={theme.imageVariants.profile}
+          />
+          <Box>
+            <Text variant="label" color="text">Name</Text>
+            <Text variant="value" color="text" marginBottom="s">{user.displayName}</Text>
+            <Text variant="label" color="text">Email</Text>
+            <Text variant="value" color="text">{user.email}</Text>
+          </Box>
+        </Box>
+        <TouchableOpacity 
+          onPress={handleLogout}
+          style={[
+          theme.buttonVariants.primary,
+          {backgroundColor:theme.colors.secondary,padding:theme.spacing.s}
+        ]}
+        >
+          <Text variant="buttonText">Logout</Text>
+        </TouchableOpacity>
+      </Box>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-  },
-  content:{
-    display:'flex',
-    flexDirection:'row',
-    gap:10
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    marginBottom: 40,
-  },
-  profile: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
-  },
-  initialsContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ccc",
-  },
-  initialsText: {
-    fontSize: 40,
-    color: "#fff",
-  },
-  userInfo: {
-    width: 250,
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  value: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: "#E53935",
-    padding: 8,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 30,
-    width: 100,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 18,
-  },
-});
