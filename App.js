@@ -5,7 +5,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth'; 
 import { auth } from './src/service/firebase';
 import { NavigationContainer } from '@react-navigation/native';
-
 export default function App() {
   return (
     <AuthenticatedUserProvider>

@@ -1,14 +1,12 @@
 import { signOut } from "firebase/auth";
 import React, { useContext } from "react";
 import { TouchableOpacity, Image } from "react-native";
-import { ThemeProvider, createBox, createText } from "@shopify/restyle";
+import { ThemeProvider} from "@shopify/restyle";
 import { auth } from "../service/firebase";
 import { AuthenticatedUserContext } from "../contexts";
 import theme from "./theme";
-
-const Box = createBox();
-const Text = createText();
-
+import View from "../components/view";
+import Text from "../components/text";
 export default function Profile() {
   const { user } = useContext(AuthenticatedUserContext);
   const handleLogout = () => {
@@ -23,31 +21,31 @@ export default function Profile() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box style={theme.boxVariants.body}>
+      <View style={theme.boxVariants.body}>
         <Text variant="title" marginBottom="xl">
           Your Profile
         </Text>
-        <Box style={theme.boxVariants.content}>
+        <View style={theme.boxVariants.content}>
           <Image variant="profile"
             source={{ uri: user.photoURL }} 
             style={theme.imageVariants.profile}
           />
-          <Box>
+          <View>
             <Text variant="label" >Name</Text>
             <Text variant="value"  marginBottom="s">{user.displayName}</Text>
             <Text variant="label" >Email</Text>
             <Text variant="value" >{user.email}</Text>
-          </Box>
-        </Box>
+          </View>
+        </View>
         <TouchableOpacity 
           onPress={handleLogout}
         >
-          <Box backgroundColor="secondary" padding="s"
+          <View backgroundColor="secondary" padding="s"
           style={theme.boxVariants.button}>
             <Text variant="buttonText">Logout</Text>
-          </Box>
+          </View>
         </TouchableOpacity>
-      </Box>
+      </View>
     </ThemeProvider>
   );
 }

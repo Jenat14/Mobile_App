@@ -1,26 +1,26 @@
 import React from "react";
 import {TouchableOpacity} from "react-native";
-import { ThemeProvider,createBox,createText} from "@shopify/restyle";
+import { ThemeProvider} from "@shopify/restyle";
 import theme from "./theme";
 
-const Box=createBox();
-const Text=createText();
+import View from "../components/view";
+import Text from "../components/text";
 
 export default function Home({ navigation }) {
   return (
     <ThemeProvider theme={theme}>
-      <Box style={theme.boxVariants.container}>
+      <View style={theme.boxVariants.container}>
         <TouchableOpacity
           onPress={() => navigation.navigate("Profile")}
         >
-          <Box margin="l" backgroundColor="primary" variant="button" style={[theme.boxVariants.button,{width:250}]}>
+          <View margin="l" backgroundColor="primary" variant="button" style={[theme.boxVariants.button,{width:250}]}>
             <Text variant='buttonText'>Profile</Text>
-          </Box>
+          </View>
         </TouchableOpacity>
-        <Box style={theme.boxVariants.body}>
+        <View style={theme.boxVariants.body}>
           <Text variant='title'>This is The Home Page</Text>
-        </Box>
-      </Box>
+        </View>
+      </View>
     </ThemeProvider>
   );
 }
