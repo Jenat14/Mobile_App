@@ -1,55 +1,27 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet
-} from "react-native";
+import {TouchableOpacity} from "react-native";
+import { ThemeProvider,createBox,createText} from "@shopify/restyle";
+import theme from "./theme";
+
+const Box=createBox();
+const Text=createText();
 
 export default function Home({ navigation }) {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Profile")}
-      >
-        <Text style={styles.buttonText}>Profile</Text>
-      </TouchableOpacity>
-      <View style={styles.body}>
-        <Text style={styles.title}>This is The Home Page</Text>
-      </View>
-    </View>
+    <ThemeProvider theme={theme}>
+      <Box style={theme.boxVariants.container}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Box margin="l" backgroundColor="primary" variant="button" style={[theme.boxVariants.button,{width:250}]}>
+            <Text variant='buttonText'>Profile</Text>
+          </Box>
+        </TouchableOpacity>
+        <Box style={theme.boxVariants.body}>
+          <Text variant='title'>This is The Home Page</Text>
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    alignItems:'center'
-  },
-  body:{
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center'
-  },
-  title:{
-    fontWeight:'bold',
-    fontSize:30,
-    alignSelf:"center",
-    color:"#f57c00"
-  },
-  button: {
-    backgroundColor: "#f57c00",
-    padding: 10,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    width:'40%',
-    marginTop: 10,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 18,
-  },
-});

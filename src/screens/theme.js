@@ -1,5 +1,4 @@
-import { createTheme, spacing } from '@shopify/restyle';
-
+import { createTheme } from "@shopify/restyle";
 const theme = createTheme({
   colors: {
     primary: '#ff6d09',
@@ -62,17 +61,12 @@ const theme = createTheme({
         display: 'flex',
         flexDirection: 'row',
         gap: 10,
-    }
-  },
-  buttonVariants: {
-    primary: {
+    },
+    button: {
         borderRadius: 8,
-        padding:'s',
+        padding:10,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 100,
-        color:'primary',
-        marginTop:'s',
     },
   },
   imageVariants: {

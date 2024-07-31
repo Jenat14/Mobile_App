@@ -5,11 +5,12 @@ import { ThemeProvider, createBox, createText } from "@shopify/restyle";
 import { auth } from "../service/firebase";
 import { AuthenticatedUserContext } from "../contexts";
 import theme from "./theme";
+
+const Box = createBox();
+const Text = createText();
+
 export default function Profile() {
   const { user } = useContext(AuthenticatedUserContext);
-  const Box = createBox();
-  const Text = createText();
-  
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -27,7 +28,7 @@ export default function Profile() {
           Your Profile
         </Text>
         <Box style={theme.boxVariants.content}>
-          <Image 
+          <Image variant="profile"
             source={{ uri: user.photoURL }} 
             style={theme.imageVariants.profile}
           />
@@ -40,12 +41,11 @@ export default function Profile() {
         </Box>
         <TouchableOpacity 
           onPress={handleLogout}
-          style={[
-          theme.buttonVariants.primary,
-          {backgroundColor:theme.colors.secondary,padding:theme.spacing.s}
-        ]}
         >
-          <Text variant="buttonText">Logout</Text>
+          <Box backgroundColor="secondary" padding="s"
+          style={theme.boxVariants.button}>
+            <Text variant="buttonText">Logout</Text>
+          </Box>
         </TouchableOpacity>
       </Box>
     </ThemeProvider>
