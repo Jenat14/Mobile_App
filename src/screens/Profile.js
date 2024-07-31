@@ -9,6 +9,7 @@ export default function Profile() {
   const { user } = useContext(AuthenticatedUserContext);
   const Box = createBox();
   const Text = createText();
+  
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -21,20 +22,20 @@ export default function Profile() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box flex={1} justifyContent="center" alignItems="center">
+      <Box style={theme.boxVariants.body}>
         <Text variant="title" marginBottom="xl">
           Your Profile
         </Text>
-        <Box style={theme.contentVariants.default}>
+        <Box style={theme.boxVariants.content}>
           <Image 
             source={{ uri: user.photoURL }} 
             style={theme.imageVariants.profile}
           />
           <Box>
-            <Text variant="label" color="text">Name</Text>
-            <Text variant="value" color="text" marginBottom="s">{user.displayName}</Text>
-            <Text variant="label" color="text">Email</Text>
-            <Text variant="value" color="text">{user.email}</Text>
+            <Text variant="label" >Name</Text>
+            <Text variant="value"  marginBottom="s">{user.displayName}</Text>
+            <Text variant="label" >Email</Text>
+            <Text variant="value" >{user.email}</Text>
           </Box>
         </Box>
         <TouchableOpacity 
